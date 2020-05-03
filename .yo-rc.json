@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "by.diplom.clinic",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "Clinic",
+    "packageName": "by.diplom.clinic",
+    "packageFolder": "by/diplom/clinic",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MmYyOWZhMGY3OTYyZDA1YjQ1MzA0MDhkMWE4OTlkNWYyODE0OGM5YzI0MmM3YTM4NTFhYTdiOGYzYTlhYTBjODA5OGNmNGMyZjY3NmZlZTI0YjYzZTQ2YWUyYjNmYThkOWJmNWUyNTg1ODRkOTA4MjI2YjJmYzJhZGZhZWRlMjI=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "cosmo",
+    "clientThemeVariant": "dark",
+    "creationTimestamp": 1588512753937,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en"],
+    "blueprints": []
+  }
+}
