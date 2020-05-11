@@ -9,10 +9,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Doctor} and its DTO {@link DoctorDTO}.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {SpecialtyMapper.class})
 public interface DoctorMapper extends EntityMapper<DoctorDTO, Doctor> {
 
+    @Mapping(source = "specialty.id", target = "specialtyId")
+    @Mapping(source = "specialty.name", target = "specialtyName")
+    DoctorDTO toDto(Doctor doctor);
 
+    @Mapping(source = "specialtyId", target = "specialty")
+    Doctor toEntity(DoctorDTO doctorDTO);
 
     default Doctor fromId(Long id) {
         if (id == null) {

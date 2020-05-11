@@ -1,7 +1,16 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "specialty",
+            "otherEntityName": "specialty",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "doctor"
+        }
+    ],
     "fields": [
         {
             "fieldName": "name",
@@ -21,6 +30,11 @@
         {
             "fieldName": "phone",
             "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "tickets",
+            "fieldType": "Integer",
             "fieldValidateRules": []
         }
     ],

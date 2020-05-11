@@ -19,7 +19,9 @@
       "name": "Name",
       "surname": "Surname",
       "patronymic": "Patronymic",
-      "phone": "Phone"
+      "phone": "Phone",
+      "tickets": "Tickets",
+      "specialty": "Specialty"
     }
   }
 }

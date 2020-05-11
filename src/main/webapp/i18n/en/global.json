@@ -8,6 +8,8 @@
       "entities": {
         "main": "Сущности",
         "doctor": "Доктор",
+        "specialty": "Specialty",
+        "doctor": "Doctor",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

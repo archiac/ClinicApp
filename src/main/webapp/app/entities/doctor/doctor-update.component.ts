@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { IDoctor, Doctor } from 'app/shared/model/doctor.model';
 import { DoctorService } from './doctor.service';
+import { ISpecialty } from 'app/shared/model/specialty.model';
+import { SpecialtyService } from 'app/entities/specialty/specialty.service';
 
 @Component({
   selector: 'jhi-doctor-update',
@@ -14,20 +16,30 @@ import { DoctorService } from './doctor.service';
 })
 export class DoctorUpdateComponent implements OnInit {
   isSaving = false;
+  specialties: ISpecialty[] = [];
 
   editForm = this.fb.group({
     id: [],
     name: [],
     surname: [],
     patronymic: [],
-    phone: []
+    phone: [],
+    tickets: [],
+    specialtyId: []
   });
 
-  constructor(protected doctorService: DoctorService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected doctorService: DoctorService,
+    protected specialtyService: SpecialtyService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ doctor }) => {
       this.updateForm(doctor);
+
+      this.specialtyService.query().subscribe((res: HttpResponse<ISpecialty[]>) => (this.specialties = res.body || []));
     });
   }
 
@@ -37,7 +49,9 @@ export class DoctorUpdateComponent implements OnInit {
       name: doctor.name,
       surname: doctor.surname,
       patronymic: doctor.patronymic,
-      phone: doctor.phone
+      phone: doctor.phone,
+      tickets: doctor.tickets,
+      specialtyId: doctor.specialtyId
     });
   }
 
@@ -62,7 +76,9 @@ export class DoctorUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       surname: this.editForm.get(['surname'])!.value,
       patronymic: this.editForm.get(['patronymic'])!.value,
-      phone: this.editForm.get(['phone'])!.value
+      phone: this.editForm.get(['phone'])!.value,
+      tickets: this.editForm.get(['tickets'])!.value,
+      specialtyId: this.editForm.get(['specialtyId'])!.value
     };
   }
 
@@ -80,5 +96,9 @@ export class DoctorUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: ISpecialty): any {
+    return item.id;
   }
 }

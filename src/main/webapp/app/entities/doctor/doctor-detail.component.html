@@ -24,6 +24,16 @@
                 <dd>
                     <span>{{ doctor.phone }}</span>
                 </dd>
+                <dt><span jhiTranslate="clinicApp.doctor.tickets">Tickets</span></dt>
+                <dd>
+                    <span>{{ doctor.tickets }}</span>
+                </dd>
+                <dt><span jhiTranslate="clinicApp.doctor.specialty">Specialty</span></dt>
+                <dd>
+                    <div *ngIf="doctor.specialtyId">
+                        <a [routerLink]="['/specialty', doctor.specialtyId, 'view']">{{ doctor.specialtyName }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

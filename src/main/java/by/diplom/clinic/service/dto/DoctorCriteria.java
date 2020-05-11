@@ -34,6 +34,10 @@ public class DoctorCriteria implements Serializable, Criteria {
 
     private StringFilter phone;
 
+    private IntegerFilter tickets;
+
+    private LongFilter specialtyId;
+
     public DoctorCriteria() {
     }
 
@@ -43,6 +47,8 @@ public class DoctorCriteria implements Serializable, Criteria {
         this.surname = other.surname == null ? null : other.surname.copy();
         this.patronymic = other.patronymic == null ? null : other.patronymic.copy();
         this.phone = other.phone == null ? null : other.phone.copy();
+        this.tickets = other.tickets == null ? null : other.tickets.copy();
+        this.specialtyId = other.specialtyId == null ? null : other.specialtyId.copy();
     }
 
     @Override
@@ -90,6 +96,22 @@ public class DoctorCriteria implements Serializable, Criteria {
         this.phone = phone;
     }
 
+    public IntegerFilter getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(IntegerFilter tickets) {
+        this.tickets = tickets;
+    }
+
+    public LongFilter getSpecialtyId() {
+        return specialtyId;
+    }
+
+    public void setSpecialtyId(LongFilter specialtyId) {
+        this.specialtyId = specialtyId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -105,7 +127,9 @@ public class DoctorCriteria implements Serializable, Criteria {
             Objects.equals(name, that.name) &&
             Objects.equals(surname, that.surname) &&
             Objects.equals(patronymic, that.patronymic) &&
-            Objects.equals(phone, that.phone);
+            Objects.equals(phone, that.phone) &&
+            Objects.equals(tickets, that.tickets) &&
+            Objects.equals(specialtyId, that.specialtyId);
     }
 
     @Override
@@ -115,7 +139,9 @@ public class DoctorCriteria implements Serializable, Criteria {
         name,
         surname,
         patronymic,
-        phone
+        phone,
+        tickets,
+        specialtyId
         );
     }
 
@@ -127,6 +153,8 @@ public class DoctorCriteria implements Serializable, Criteria {
                 (surname != null ? "surname=" + surname + ", " : "") +
                 (patronymic != null ? "patronymic=" + patronymic + ", " : "") +
                 (phone != null ? "phone=" + phone + ", " : "") +
+                (tickets != null ? "tickets=" + tickets + ", " : "") +
+                (specialtyId != null ? "specialtyId=" + specialtyId + ", " : "") +
             "}";
     }
 

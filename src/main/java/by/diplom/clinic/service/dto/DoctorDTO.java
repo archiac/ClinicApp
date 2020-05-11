@@ -18,6 +18,12 @@ public class DoctorDTO implements Serializable {
 
     private String phone;
 
+    private Integer tickets;
+
+
+    private Long specialtyId;
+
+    private String specialtyName;
     
     public Long getId() {
         return id;
@@ -59,6 +65,30 @@ public class DoctorDTO implements Serializable {
         this.phone = phone;
     }
 
+    public Integer getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Integer tickets) {
+        this.tickets = tickets;
+    }
+
+    public Long getSpecialtyId() {
+        return specialtyId;
+    }
+
+    public void setSpecialtyId(Long specialtyId) {
+        this.specialtyId = specialtyId;
+    }
+
+    public String getSpecialtyName() {
+        return specialtyName;
+    }
+
+    public void setSpecialtyName(String specialtyName) {
+        this.specialtyName = specialtyName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -88,6 +118,9 @@ public class DoctorDTO implements Serializable {
             ", surname='" + getSurname() + "'" +
             ", patronymic='" + getPatronymic() + "'" +
             ", phone='" + getPhone() + "'" +
+            ", tickets=" + getTickets() +
+            ", specialtyId=" + getSpecialtyId() +
+            ", specialtyName='" + getSpecialtyName() + "'" +
             "}";
     }
 }

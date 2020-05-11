@@ -43,6 +43,7 @@ public class CacheConfiguration {
             createCache(cm, by.diplom.clinic.domain.Authority.class.getName());
             createCache(cm, by.diplom.clinic.domain.User.class.getName() + ".authorities");
             createCache(cm, by.diplom.clinic.domain.Doctor.class.getName());
+            createCache(cm, by.diplom.clinic.domain.Specialty.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

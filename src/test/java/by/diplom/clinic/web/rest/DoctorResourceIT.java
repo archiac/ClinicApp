@@ -2,6 +2,7 @@ package by.diplom.clinic.web.rest;
 
 import by.diplom.clinic.ClinicApp;
 import by.diplom.clinic.domain.Doctor;
+import by.diplom.clinic.domain.Specialty;
 import by.diplom.clinic.repository.DoctorRepository;
 import by.diplom.clinic.service.DoctorService;
 import by.diplom.clinic.service.dto.DoctorDTO;
@@ -47,6 +48,10 @@ public class DoctorResourceIT {
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_TICKETS = 1;
+    private static final Integer UPDATED_TICKETS = 2;
+    private static final Integer SMALLER_TICKETS = 1 - 1;
+
     @Autowired
     private DoctorRepository doctorRepository;
 
@@ -78,7 +83,8 @@ public class DoctorResourceIT {
             .name(DEFAULT_NAME)
             .surname(DEFAULT_SURNAME)
             .patronymic(DEFAULT_PATRONYMIC)
-            .phone(DEFAULT_PHONE);
+            .phone(DEFAULT_PHONE)
+            .tickets(DEFAULT_TICKETS);
         return doctor;
     }
     /**
@@ -92,7 +98,8 @@ public class DoctorResourceIT {
             .name(UPDATED_NAME)
             .surname(UPDATED_SURNAME)
             .patronymic(UPDATED_PATRONYMIC)
-            .phone(UPDATED_PHONE);
+            .phone(UPDATED_PHONE)
+            .tickets(UPDATED_TICKETS);
         return doctor;
     }
 
@@ -121,6 +128,7 @@ public class DoctorResourceIT {
         assertThat(testDoctor.getSurname()).isEqualTo(DEFAULT_SURNAME);
         assertThat(testDoctor.getPatronymic()).isEqualTo(DEFAULT_PATRONYMIC);
         assertThat(testDoctor.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testDoctor.getTickets()).isEqualTo(DEFAULT_TICKETS);
     }
 
     @Test
@@ -158,7 +166,8 @@ public class DoctorResourceIT {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].surname").value(hasItem(DEFAULT_SURNAME)))
             .andExpect(jsonPath("$.[*].patronymic").value(hasItem(DEFAULT_PATRONYMIC)))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)));
+            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
+            .andExpect(jsonPath("$.[*].tickets").value(hasItem(DEFAULT_TICKETS)));
     }
     
     @Test
@@ -175,7 +184,8 @@ public class DoctorResourceIT {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.surname").value(DEFAULT_SURNAME))
             .andExpect(jsonPath("$.patronymic").value(DEFAULT_PATRONYMIC))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE));
+            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE))
+            .andExpect(jsonPath("$.tickets").value(DEFAULT_TICKETS));
     }
 
 
@@ -509,6 +519,131 @@ public class DoctorResourceIT {
         defaultDoctorShouldBeFound("phone.doesNotContain=" + UPDATED_PHONE);
     }
 
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByTicketsIsEqualToSomething() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+
+        // Get all the doctorList where tickets equals to DEFAULT_TICKETS
+        defaultDoctorShouldBeFound("tickets.equals=" + DEFAULT_TICKETS);
+
+        // Get all the doctorList where tickets equals to UPDATED_TICKETS
+        defaultDoctorShouldNotBeFound("tickets.equals=" + UPDATED_TICKETS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByTicketsIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+
+        // Get all the doctorList where tickets not equals to DEFAULT_TICKETS
+        defaultDoctorShouldNotBeFound("tickets.notEquals=" + DEFAULT_TICKETS);
+
+        // Get all the doctorList where tickets not equals to UPDATED_TICKETS
+        defaultDoctorShouldBeFound("tickets.notEquals=" + UPDATED_TICKETS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByTicketsIsInShouldWork() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+
+        // Get all the doctorList where tickets in DEFAULT_TICKETS or UPDATED_TICKETS
+        defaultDoctorShouldBeFound("tickets.in=" + DEFAULT_TICKETS + "," + UPDATED_TICKETS);
+
+        // Get all the doctorList where tickets equals to UPDATED_TICKETS
+        defaultDoctorShouldNotBeFound("tickets.in=" + UPDATED_TICKETS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByTicketsIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+
+        // Get all the doctorList where tickets is not null
+        defaultDoctorShouldBeFound("tickets.specified=true");
+
+        // Get all the doctorList where tickets is null
+        defaultDoctorShouldNotBeFound("tickets.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByTicketsIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+
+        // Get all the doctorList where tickets is greater than or equal to DEFAULT_TICKETS
+        defaultDoctorShouldBeFound("tickets.greaterThanOrEqual=" + DEFAULT_TICKETS);
+
+        // Get all the doctorList where tickets is greater than or equal to UPDATED_TICKETS
+        defaultDoctorShouldNotBeFound("tickets.greaterThanOrEqual=" + UPDATED_TICKETS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByTicketsIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+
+        // Get all the doctorList where tickets is less than or equal to DEFAULT_TICKETS
+        defaultDoctorShouldBeFound("tickets.lessThanOrEqual=" + DEFAULT_TICKETS);
+
+        // Get all the doctorList where tickets is less than or equal to SMALLER_TICKETS
+        defaultDoctorShouldNotBeFound("tickets.lessThanOrEqual=" + SMALLER_TICKETS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByTicketsIsLessThanSomething() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+
+        // Get all the doctorList where tickets is less than DEFAULT_TICKETS
+        defaultDoctorShouldNotBeFound("tickets.lessThan=" + DEFAULT_TICKETS);
+
+        // Get all the doctorList where tickets is less than UPDATED_TICKETS
+        defaultDoctorShouldBeFound("tickets.lessThan=" + UPDATED_TICKETS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByTicketsIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+
+        // Get all the doctorList where tickets is greater than DEFAULT_TICKETS
+        defaultDoctorShouldNotBeFound("tickets.greaterThan=" + DEFAULT_TICKETS);
+
+        // Get all the doctorList where tickets is greater than SMALLER_TICKETS
+        defaultDoctorShouldBeFound("tickets.greaterThan=" + SMALLER_TICKETS);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllDoctorsBySpecialtyIsEqualToSomething() throws Exception {
+        // Initialize the database
+        doctorRepository.saveAndFlush(doctor);
+        Specialty specialty = SpecialtyResourceIT.createEntity(em);
+        em.persist(specialty);
+        em.flush();
+        doctor.setSpecialty(specialty);
+        doctorRepository.saveAndFlush(doctor);
+        Long specialtyId = specialty.getId();
+
+        // Get all the doctorList where specialty equals to specialtyId
+        defaultDoctorShouldBeFound("specialtyId.equals=" + specialtyId);
+
+        // Get all the doctorList where specialty equals to specialtyId + 1
+        defaultDoctorShouldNotBeFound("specialtyId.equals=" + (specialtyId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -520,7 +655,8 @@ public class DoctorResourceIT {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].surname").value(hasItem(DEFAULT_SURNAME)))
             .andExpect(jsonPath("$.[*].patronymic").value(hasItem(DEFAULT_PATRONYMIC)))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)));
+            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
+            .andExpect(jsonPath("$.[*].tickets").value(hasItem(DEFAULT_TICKETS)));
 
         // Check, that the count call also returns 1
         restDoctorMockMvc.perform(get("/api/doctors/count?sort=id,desc&" + filter))
@@ -571,7 +707,8 @@ public class DoctorResourceIT {
             .name(UPDATED_NAME)
             .surname(UPDATED_SURNAME)
             .patronymic(UPDATED_PATRONYMIC)
-            .phone(UPDATED_PHONE);
+            .phone(UPDATED_PHONE)
+            .tickets(UPDATED_TICKETS);
         DoctorDTO doctorDTO = doctorMapper.toDto(updatedDoctor);
 
         restDoctorMockMvc.perform(put("/api/doctors")
@@ -587,6 +724,7 @@ public class DoctorResourceIT {
         assertThat(testDoctor.getSurname()).isEqualTo(UPDATED_SURNAME);
         assertThat(testDoctor.getPatronymic()).isEqualTo(UPDATED_PATRONYMIC);
         assertThat(testDoctor.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testDoctor.getTickets()).isEqualTo(UPDATED_TICKETS);
     }
 
     @Test

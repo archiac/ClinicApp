@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="clinicApp.doctor.home.title">Doctors</span>
-        <div *jhiHasAnyAuthority="'ROLE_ADMIN'" >
+        <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-doctor" [routerLink]="['/doctor/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="clinicApp.doctor.home.createLabel">
@@ -28,6 +28,8 @@
                     <th scope="col"  jhiSortBy="surname"><span jhiTranslate="clinicApp.doctor.surname">Surname</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="patronymic"><span jhiTranslate="clinicApp.doctor.patronymic">Patronymic</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="phone"><span jhiTranslate="clinicApp.doctor.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tickets"><span jhiTranslate="clinicApp.doctor.tickets">Tickets</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="specialtyName"><span jhiTranslate="clinicApp.doctor.specialty">Specialty</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -38,6 +40,12 @@
                     <td>{{ doctor.surname }}</td>
                     <td>{{ doctor.patronymic }}</td>
                     <td>{{ doctor.phone }}</td>
+                    <td>{{ doctor.tickets }}</td>
+                    <td>
+                        <div *ngIf="doctor.specialtyId">
+                            <a [routerLink]="['/specialty', doctor.specialtyId , 'view']" >{{ doctor.specialtyName }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
@@ -54,6 +62,7 @@
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
+
                             <button type="submit" (click)="delete(doctor)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
