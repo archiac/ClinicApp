@@ -11,6 +11,7 @@ import { doctorRoute } from './doctor.route';
 @NgModule({
   imports: [ClinicSharedModule, RouterModule.forChild(doctorRoute)],
   declarations: [DoctorComponent, DoctorDetailComponent, DoctorUpdateComponent, DoctorDeleteDialogComponent],
+  exports: [DoctorComponent],
   entryComponents: [DoctorDeleteDialogComponent]
 })
 export class ClinicDoctorModule {}
