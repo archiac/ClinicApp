@@ -1,0 +1,22 @@
+<form *ngIf="doctor" name="deleteForm">
+    <div class="modal-header">
+        <h4 class="modal-title">Выберите время и услугу у врача</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="cancel()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <p id="jhi-delete-doctor-heading" jhiTranslate="clinicApp.doctor.delete.question" [translateValues]="{ id: doctor.id }">Вы действительно хотите заказать талон к данному врачу?</p>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+            <span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button id="jhi-confirm-delete-doctor" type="submit" class="btn btn-danger">
+           <span jhiTranslate="entity.action.delete">Delete</span>
+        </button>
+    </div>
+</form>

@@ -38,7 +38,7 @@ export const specialtyRoute: Routes = [
     path: '',
     component: SpecialtyComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       pageTitle: 'clinicApp.specialty.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -50,7 +50,7 @@ export const specialtyRoute: Routes = [
       specialty: SpecialtyResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       pageTitle: 'clinicApp.specialty.home.title'
     },
     canActivate: [UserRouteAccessService]

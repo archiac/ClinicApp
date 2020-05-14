@@ -10,6 +10,7 @@ import { IDoctor } from 'app/shared/model/doctor.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { DoctorService } from './doctor.service';
 import { DoctorDeleteDialogComponent } from './doctor-delete-dialog.component';
+import { AddticketComponent } from 'app/entities/addticket/addticket.component';
 
 @Component({
   selector: 'jhi-doctor',
@@ -102,5 +103,10 @@ export class DoctorComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page;
+  }
+
+  addticket(doctor: IDoctor): void {
+    const modalRef = this.modalService.open(AddticketComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.doctor = doctor;
   }
 }

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AddticketComponent } from './addticket/addticket.component';
+import { NgJhipsterModule } from 'ng-jhipster';
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./specialty/specialty.module').then(m => m.ClinicSpecialtyModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
-    ])
-  ]
+    ]),
+    NgJhipsterModule
+  ],
+  declarations: [AddticketComponent]
 })
 export class ClinicEntityModule {}

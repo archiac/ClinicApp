@@ -43,7 +43,7 @@ export const doctorRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       defaultSort: 'id,asc',
       pageTitle: 'clinicApp.doctor.home.title'
     },
@@ -56,7 +56,7 @@ export const doctorRoute: Routes = [
       doctor: DoctorResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       pageTitle: 'clinicApp.doctor.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -68,7 +68,7 @@ export const doctorRoute: Routes = [
       doctor: DoctorResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       pageTitle: 'clinicApp.doctor.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -80,7 +80,7 @@ export const doctorRoute: Routes = [
       doctor: DoctorResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       pageTitle: 'clinicApp.doctor.home.title'
     },
     canActivate: [UserRouteAccessService]
