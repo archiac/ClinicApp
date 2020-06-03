@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
-import { Observable, of, EMPTY } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 import { Authority } from 'app/shared/constants/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { IDoctor, Doctor } from 'app/shared/model/doctor.model';
+import { Doctor, IDoctor } from 'app/shared/model/doctor.model';
 import { DoctorService } from './doctor.service';
 import { DoctorComponent } from './doctor.component';
 import { DoctorDetailComponent } from './doctor-detail.component';
@@ -43,7 +43,7 @@ export const doctorRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: [Authority.USER, Authority.ADMIN],
+      authorities: [Authority.USER, Authority.ADMIN, Authority.DOCTOR],
       defaultSort: 'id,asc',
       pageTitle: 'clinicApp.doctor.home.title'
     },
@@ -56,7 +56,7 @@ export const doctorRoute: Routes = [
       doctor: DoctorResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.ADMIN],
+      authorities: [Authority.USER, Authority.ADMIN, Authority.DOCTOR],
       pageTitle: 'clinicApp.doctor.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -68,7 +68,7 @@ export const doctorRoute: Routes = [
       doctor: DoctorResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.ADMIN],
+      authorities: [Authority.USER, Authority.ADMIN, Authority.DOCTOR],
       pageTitle: 'clinicApp.doctor.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -80,7 +80,7 @@ export const doctorRoute: Routes = [
       doctor: DoctorResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.ADMIN],
+      authorities: [Authority.USER, Authority.ADMIN, Authority.DOCTOR],
       pageTitle: 'clinicApp.doctor.home.title'
     },
     canActivate: [UserRouteAccessService]

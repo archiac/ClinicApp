@@ -11,6 +11,7 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { DoctorService } from './doctor.service';
 import { DoctorDeleteDialogComponent } from './doctor-delete-dialog.component';
 import { AddticketComponent } from 'app/entities/addticket/addticket.component';
+import { MakerecordComponent } from 'app/entities/makerecord/makerecord.component';
 
 @Component({
   selector: 'jhi-doctor',
@@ -107,6 +108,11 @@ export class DoctorComponent implements OnInit, OnDestroy {
 
   addticket(doctor: IDoctor): void {
     const modalRef = this.modalService.open(AddticketComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.doctor = doctor;
+  }
+
+  makerecord(doctor: IDoctor): void {
+    const modalRef = this.modalService.open(MakerecordComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.doctor = doctor;
   }
 }

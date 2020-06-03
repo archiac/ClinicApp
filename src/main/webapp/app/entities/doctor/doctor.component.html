@@ -1,7 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span>Доктора</span>
+        <div *jhiHasAnyAuthority="'ROLE_DOCTOR'">
+            <span>Пациенты</span>
+        </div>
         <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
+        <span>Доктора</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-doctor" [routerLink]="['/doctor/new']">
             <fa-icon icon="plus"></fa-icon>
             <span>
@@ -28,8 +31,10 @@
                     <th scope="col"  jhiSortBy="surname"><span >Фамилия</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="patronymic"><span >Отчество</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="phone"><span >Телефон</span> <fa-icon icon="sort"></fa-icon></th>
+                    <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']">
                     <th scope="col"  jhiSortBy="tickets"><span >Количество талонов</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="specialtyName"><span >Специальность</span> <fa-icon icon="sort"></fa-icon></th>
+                    </div>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -40,12 +45,14 @@
                     <td>{{ doctor.surname }}</td>
                     <td>{{ doctor.patronymic }}</td>
                     <td>{{ doctor.phone }}</td>
+                    <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']">
                     <td>{{ doctor.tickets }}</td>
                     <td>
                         <div *ngIf="doctor.specialtyId">
                             <a [routerLink]="['/specialty', doctor.specialtyId , 'view']" >{{ doctor.specialtyName }}</a>
                         </div>
                     </td>
+                    </div>
                     <td class="text-right">
                         <div class="btn-group">
                             <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
@@ -73,6 +80,12 @@
                                 <button type="submit" (click)="addticket(doctor)"
                                         class="btn btn-danger btn-sm">
                                     <span class="d-none d-md-inline">Заказать талон</span>
+                                </button>
+                            </div>
+                            <div *jhiHasAnyAuthority="'ROLE_DOCTOR'">
+                                <button type="submit" (click)="makerecord(doctor)"
+                                        class="btn btn-info btn-sm">
+                                    <span class="d-none d-md-inline">Сделать запись в историю болезней</span>
                                 </button>
                             </div>
                         </div>

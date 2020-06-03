@@ -1,0 +1,51 @@
+<form *ngIf="doctor" name="deleteForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title">Сделать запись в историю болезней</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="cancel()">&times;</button>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div *ngIf="doctor">
+                <hr>
+                <dl class="row-md jh-entity-details">
+                    <dt><span>Имя</span></dt>
+                    <dd>
+                        <span>{{ doctor.name }}</span>
+                    </dd>
+                    <dt><span>Фамилия</span></dt>
+                    <dd>
+                        <span>{{ doctor.surname }}</span>
+                    </dd>
+                    <dt><span>Отчество</span></dt>
+                    <dd>
+                        <span>{{ doctor.patronymic }}</span>
+                    </dd>
+                    <dt><span>Дата приема</span></dt>
+                    <dd>
+                        <span>04.06.20</span>
+                    </dd>
+                    <dt><span>Время приема</span></dt>
+                    <dd>
+                        <span>16.00</span>
+                    </dd>
+                    <div class="form-group">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+            <span>Отменить</span>
+        </button>
+
+        <button id="jhi-confirm-delete-doctor" type="submit" class="btn btn-danger">
+            <span >Записать</span>
+        </button>
+    </div>
+</form>

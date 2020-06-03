@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AddticketComponent } from './addticket/addticket.component';
 import { NgJhipsterModule } from 'ng-jhipster';
+import { MakerecordComponent } from './makerecord/makerecord.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { NgJhipsterModule } from 'ng-jhipster';
     ]),
     NgJhipsterModule
   ],
-  declarations: [AddticketComponent]
+  declarations: [AddticketComponent, MakerecordComponent]
 })
 export class ClinicEntityModule {}
