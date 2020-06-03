@@ -1,20 +1,20 @@
 <div>
-    <h2 id="audits-page-heading" jhiTranslate="audits.title">Audits</h2>
+    <h2 id="audits-page-heading" >История</h2>
 
     <jhi-alert-error></jhi-alert-error>
 
     <div class="row">
         <div class="col-md-5">
-            <h4 jhiTranslate="audits.filter.title">Filter by date</h4>
+            <h4>Фильтр по дате</h4>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" jhiTranslate="audits.filter.from">from</span>
+                    <span class="input-group-text" >от</span>
                 </div>
                 <input type="date" class="form-control" name="start" [(ngModel)]="fromDate" (ngModelChange)="transition()" required/>
 
                 <div class="input-group-append">
-                    <span class="input-group-text" jhiTranslate="audits.filter.to">To</span>
+                    <span class="input-group-text">до</span>
                 </div>
                 <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()" required/>
             </div>
@@ -29,10 +29,9 @@
         <table class="table table-sm table-striped" aria-describedby="audits-page-heading">
             <thead [ngSwitch]="canLoad()">
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)" *ngSwitchCase="true">
-                    <th scope="col" jhiSortBy="auditEventDate"><span jhiTranslate="audits.table.header.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" jhiSortBy="principal"><span jhiTranslate="audits.table.header.principal">User</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" jhiSortBy="auditEventType"><span jhiTranslate="audits.table.header.status">State</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"><span jhiTranslate="audits.table.header.data">Extra data</span></th>
+                    <th scope="col" jhiSortBy="auditEventDate"><span>Дата</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="principal"><span >Пользователь</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="auditEventType"><span>Состояние</span> <fa-icon icon="sort"></fa-icon></th>
                 </tr>
                 <tr *ngSwitchCase="false">
                     <th scope="col"><span jhiTranslate="audits.table.header.date">Date</span></th>

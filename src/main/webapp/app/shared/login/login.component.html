@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" jhiTranslate="login.title">Вход</h4>
+    <h4 class="modal-title" >Вход</h4>
 
     <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')">
         <span aria-hidden="true">x</span>
@@ -18,13 +18,13 @@
             <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
                 <div class="form-group">
                     <label class="username-label" for="username">Логин</label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="{{ 'global.form.username.placeholder' | translate }}"
+                    <input type="text" class="form-control" name="username" id="username"
                            formControlName="username" #username>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Пароль</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="{{ 'login.form.password.placeholder' | translate }}"
+                    <input type="password" class="form-control" name="password" id="password"
                            formControlName="password">
                 </div>
 

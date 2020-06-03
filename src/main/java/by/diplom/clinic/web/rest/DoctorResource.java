@@ -1,5 +1,6 @@
 package by.diplom.clinic.web.rest;
 
+import by.diplom.clinic.ClinicApp;
 import by.diplom.clinic.service.DoctorService;
 import by.diplom.clinic.web.rest.errors.BadRequestAlertException;
 import by.diplom.clinic.service.dto.DoctorDTO;

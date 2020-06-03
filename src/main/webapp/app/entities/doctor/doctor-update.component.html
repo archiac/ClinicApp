@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-doctor-heading" jhiTranslate="clinicApp.doctor.home.createOrEditLabel">Create or edit a Doctor</h2>
+            <h2 id="jhi-doctor-heading">Добавление нового доктора</h2>
 
             <div>
                 <jhi-alert-error></jhi-alert-error>
@@ -12,37 +12,37 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicApp.doctor.name" for="field_name">Name</label>
+                    <label class="form-control-label" for="field_name">Имя</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicApp.doctor.surname" for="field_surname">Surname</label>
+                    <label class="form-control-label" for="field_surname">Фамилия</label>
                     <input type="text" class="form-control" name="surname" id="field_surname"
                            formControlName="surname"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicApp.doctor.patronymic" for="field_patronymic">Patronymic</label>
+                    <label class="form-control-label"  for="field_patronymic">Отчество</label>
                     <input type="text" class="form-control" name="patronymic" id="field_patronymic"
                            formControlName="patronymic"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicApp.doctor.phone" for="field_phone">Phone</label>
+                    <label class="form-control-label" for="field_phone">Телефон</label>
                     <input type="text" class="form-control" name="phone" id="field_phone"
                            formControlName="phone"/>
                 </div>
-
+                <!--
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="clinicApp.doctor.tickets" for="field_tickets">Tickets</label>
+                                    <input type="number" class="form-control" name="tickets" id="field_tickets"
+                                           formControlName="tickets"/>
+                                </div>
+                                ...-->
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicApp.doctor.tickets" for="field_tickets">Tickets</label>
-                    <input type="number" class="form-control" name="tickets" id="field_tickets"
-                           formControlName="tickets"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="clinicApp.doctor.specialty" for="field_specialty">Specialty</label>
+                    <label class="form-control-label"  for="field_specialty">Специльность</label>
                     <select class="form-control" id="field_specialty" name="specialty" formControlName="specialtyId">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="specialtyOption.id" *ngFor="let specialtyOption of specialties; trackBy: trackById">{{ specialtyOption.name }}</option>
@@ -52,11 +52,11 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Отменить</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Сохранить</span>
                 </button>
             </div>
         </form>

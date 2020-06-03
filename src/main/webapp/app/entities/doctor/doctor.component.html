@@ -1,11 +1,11 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="clinicApp.doctor.home.title">Doctors</span>
+        <span>Доктора</span>
         <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-doctor" [routerLink]="['/doctor/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="clinicApp.doctor.home.createLabel">
-            Create a new Doctor
+            <span>
+            Добавить нового доктора
             </span>
         </button>
         </div>
@@ -24,12 +24,12 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="clinicApp.doctor.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="surname"><span jhiTranslate="clinicApp.doctor.surname">Surname</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="patronymic"><span jhiTranslate="clinicApp.doctor.patronymic">Patronymic</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="phone"><span jhiTranslate="clinicApp.doctor.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="tickets"><span jhiTranslate="clinicApp.doctor.tickets">Tickets</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="specialtyName"><span jhiTranslate="clinicApp.doctor.specialty">Specialty</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span >Имя</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="surname"><span >Фамилия</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="patronymic"><span >Отчество</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="phone"><span >Телефон</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tickets"><span >Количество талонов</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="specialtyName"><span >Специальность</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -53,20 +53,20 @@
                                     [routerLink]="['/doctor', doctor.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                <span class="d-none d-md-inline">Просмотр</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/doctor', doctor.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                <span class="d-none d-md-inline">Редактировать</span>
                             </button>
 
                             <button type="submit" (click)="delete(doctor)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                <span class="d-none d-md-inline">Удалить</span>
                             </button>
                             </div>
                             <div *jhiHasAnyAuthority="'ROLE_USER'">
